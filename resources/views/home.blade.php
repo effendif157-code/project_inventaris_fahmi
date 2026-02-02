@@ -78,7 +78,7 @@
                                 </div>
                             </div>
                             <span class="fw-semibold d-block mb-1 text-muted">Profit</span>
-                            <h3 class="card-title mb-2">$12,628</h3>
+                            <h3 class="card-title mb-2">RP.12,628</h3>
                             <small class="text-success fw-bold"><i class="bx bx-up-arrow-alt"></i> +72.80%</small>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                                 </div>
                             </div>
                             <span class="fw-semibold d-block mb-1 text-muted">Sales</span>
-                            <h3 class="card-title mb-2">$4,679</h3>
+                            <h3 class="card-title mb-2">Rp.4,679</h3>
                             <small class="text-success fw-bold"><i class="bx bx-up-arrow-alt"></i> +28.42%</small>
                         </div>
                     </div>
@@ -171,7 +171,7 @@
                                     <h6 class="mb-0">Paypal</h6>
                                     <small class="text-muted d-block">Pembayaran Masuk</small>
                                 </div>
-                                <div class="user-progress text-success fw-bold">+$82.60</div>
+                                <div class="user-progress text-success fw-bold">+Rp.82.60</div>
                             </div>
                         </li>
                         <li class="d-flex mb-4 pb-1">
@@ -183,7 +183,7 @@
                                     <h6 class="mb-0">Starbucks</h6>
                                     <small class="text-muted d-block">Hiburan & Makanan</small>
                                 </div>
-                                <div class="user-progress text-danger fw-bold">-$24.50</div>
+                                <div class="user-progress text-danger fw-bold">-Rp.4.50</div>
                             </div>
                         </li>
                         <li class="d-flex">
@@ -195,7 +195,7 @@
                                     <h6 class="mb-0">Mastercard</h6>
                                     <small class="text-muted d-block">Belanja Bulanan</small>
                                 </div>
-                                <div class="user-progress text-danger fw-bold">-$92.45</div>
+                                <div class="user-progress text-danger fw-bold">-Rp.92.45</div>
                             </div>
                         </li>
                     </ul>

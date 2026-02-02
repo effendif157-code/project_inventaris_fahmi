@@ -1,18 +1,16 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Kategori;
 
 class Kategori extends Model
 {
-    protected $table    = 'kategori';
-    protected $fillable = ['nama', 'deskripsi'];
+    protected $table    = 'kategori'; // Nama tabel sesuai diagram
+    protected $fillable = ['nama', 'deskripsi','status'];
 
-    public function barang()
+    // Relasi ke tabel barang (One to Many)
+    public function barangs()
     {
-        return $this->hasMany(Barang::class);
+        return $this->hasMany(Barang::class, 'kategori_id');
     }
 }
-

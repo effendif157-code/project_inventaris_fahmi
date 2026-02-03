@@ -12,16 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kategori', function (Blueprint $table) {
-            // id (integer primary key)
             $table->id();
-
-            // nama (varchar)
             $table->string('nama');
-
-            // deskripsi (text)
             $table->text('deskripsi')->nullable();
-
-            // created_at & updated_at (timestamp)
+            $table->enum('status', ['0', '1'])->default('1')->comment('0=Nonaktif, 1=Aktif');
             $table->timestamps();
         });
     }

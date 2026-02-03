@@ -6,18 +6,24 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
-    {
-        Schema::table('kategori', function (Blueprint $table) {
-            // Menambahkan kolom status (1 = Aktif, 0 = Tidak Aktif)
-            $table->integer('status')->default(1)->after('deskripsi'); 
-        });
-    }
+{
+    Schema::table('kategori', function (Blueprint $table) {
+        // Menambahkan kolom status dengan default 1 (Aktif)
+        $table->boolean('status')->default(1)->after('deskripsi');
+    });
+}
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
         Schema::table('kategori', function (Blueprint $table) {
-            $table->dropColumn('status');
+            //
         });
     }
 };

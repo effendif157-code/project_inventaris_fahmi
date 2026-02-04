@@ -27,6 +27,7 @@
                     <tr>
                         <th>Nama Barang</th>
                         <th>Lokasi</th>
+                        <th>Kategori</th>
                         <th>Kondisi</th>
                         <th>Jumlah</th>
                         <th>Aksi</th>
@@ -37,12 +38,16 @@
                     <tr>
                         <td>
                             <div class="d-flex justify-content-start align-items-center">
-                                <div class="avatar-wrapper">
-                                    <div class="avatar avatar-sm me-3">
+                                <div class="avatar avatar-sm me-3">
+                                    @if($b->foto_barang)
+                                        {{-- Jika ada foto, tampilkan gambar --}}
+                                        <img src="{{ asset('storage/' . $b->foto_barang) }}" alt="Foto {{ $b->nama_barang }}" class="rounded-circle" style="object-fit: cover;">
+                                    @else
+                                        {{-- Jika tidak ada foto, tampilkan inisial seperti sebelumnya --}}
                                         <span class="avatar-initial rounded bg-label-primary">
                                             {{ strtoupper(substr($b->nama_barang, 0, 1)) }}
                                         </span>
-                                    </div>
+                                    @endif
                                 </div>
                                 <div class="d-flex flex-column">
                                     <span class="fw-semibold">{{ $b->nama_barang }}</span>
@@ -50,6 +55,8 @@
                             </div>
                         </td>
                         <td>{{ $b->lokasi->nama }}</td>
+                        
+                        <td>{{ $b->kategori->nama }}</td>
                         <td>
                             @php
                                 $badgeColor = $b->kondisi == 'baik' ? 'bg-label-success' : ($b->kondisi == 'rusak_ringan' ? 'bg-label-warning' : 'bg-label-danger');

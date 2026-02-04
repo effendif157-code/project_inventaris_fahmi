@@ -7,6 +7,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LokasiController;
+use App\Http\Controllers\PeminjamanController;
+
 
 
 Route::get('/', function () {
@@ -31,5 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('kategori', KategoriController::class);
     Route::resource('barang', BarangController::class);
     Route::resource('lokasi', LokasiController::class);
+    Route::resource('peminjaman', PeminjamanController::class);
+
 
 });
+

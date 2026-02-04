@@ -23,9 +23,24 @@ class BarangController extends Controller
 
     public function create()
     {
-        $kategori = Kategori::all();
-        $lokasi = Lokasi::all(); // Mengambil data lokasi sesuai ERD
-        return view('barang.create', compact('kategori', 'lokasi'));
+        // 1. LOGIKA KODE OTOMATIS
+        $lastBarang = \App\Models\Barang::orderBy('id', 'desc')->first();
+
+        if (!$lastBarang) {
+            $kodeOtomatis = 'BRG-001';
+        } else {
+            // Mengambil angka dari kode terakhir, misal 'BRG-001' -> ambil 001
+            $noUrut = (int) substr($lastBarang->kode_barang, 4);
+            $noUrut++;
+            $kodeOtomatis = 'BRG-' . str_pad($noUrut, 3, "0", STR_PAD_LEFT);
+        }
+
+        // 2. AMBIL DATA UNTUK DROPDOWN (Agar tidak error undefined variable)
+        $kategori = \App\Models\Kategori::all(); 
+        $lokasi = \App\Models\Lokasi::all(); // Pastikan Anda punya model Lokasi
+
+        // 3. KIRIM SEMUA VARIABEL KE VIEW
+        return view('barang.create', compact('kodeOtomatis', 'kategori', 'lokasi'));
     }
 
     public function store(Request $request)

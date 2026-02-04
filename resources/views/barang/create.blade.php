@@ -13,9 +13,13 @@
                     <form action="{{ route('barang.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="mb-3 col-md-6">
-                                <label class="form-label">Kode Barang</label>
-                                <input type="text" name="kode_barang" class="form-control" placeholder="BRG-001" required />
+                            <div class="form-group">
+                                <label>KODE BARANG</label>
+                                <input type="text" 
+                                    name="kode_barang" 
+                                    class="form-control" 
+                                    value="{{ $kodeOtomatis }}" 
+                                    readonly>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label class="form-label">Nama Barang</label>

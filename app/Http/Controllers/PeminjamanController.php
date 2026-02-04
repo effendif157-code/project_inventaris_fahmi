@@ -77,7 +77,7 @@ class PeminjamanController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Cek apakah field ini sesuai dengan name di View Anda
+        // Pastikan nama field di validasi sama dengan nama di tag <input> atau <select>
         $request->validate([
             'nama_peminjam'   => 'required',
             'status'          => 'required',
@@ -87,45 +87,35 @@ class PeminjamanController extends Controller
         try {
             DB::transaction(function () use ($request, $id) {
                 $peminjaman = Peminjaman::findOrFail($id);
-                $oldStatus = $peminjaman->status;
+                $oldStatus  = $peminjaman->status;
 
-                // Update Tabel Utama
+                // 1. Update Tabel Peminjaman
                 $peminjaman->update([
                     'nama_peminjam'   => $request->nama_peminjam,
                     'status'          => $request->status,
                     'tanggal_kembali' => $request->tanggal_kembali,
                 ]);
 
-                // Update Detail (Pastikan relasi details tidak null)
-                $detail = $peminjaman->details()->first(); // Gunakan relasi hasMany
+                // 2. Update Tabel Detail (Kondisi Sesudah)
+                $detail = DetailPeminjaman::where('peminjaman_id', $id)->first();
                 if ($detail) {
                     $detail->update([
-                        'kondisi_sesudah' => $request->kondisi_sesudah
+                        'kondisi_sesudah' => $request->kondisi_sesudah,
                     ]);
 
-                    // Logika Stok
+                    // 3. Logika Stok Otomatis
                     if ($oldStatus !== 'dikembalikan' && $request->status === 'dikembalikan') {
-                        $detail->barang->increment('jumlah', $detail->jumlah);
+                        Barang::find($detail->barang_id)->increment('jumlah', $detail->jumlah);
                     } elseif ($oldStatus === 'dikembalikan' && $request->status !== 'dikembalikan') {
-                        $detail->barang->decrement('jumlah', $detail->jumlah);
+                        Barang::find($detail->barang_id)->decrement('jumlah', $detail->jumlah);
                     }
                 }
             });
 
             return redirect()->route('peminjaman.index')->with('success', 'Data berhasil diperbarui!');
         } catch (\Exception $e) {
-            // Ini akan memunculkan pesan jika ada error database/coding
             return back()->with('error', 'Gagal update: ' . $e->getMessage());
         }
-    }
-
-    public function show($id)
-    {
-        // Memuat data peminjaman beserta user yang menginput, 
-        // serta detail barang yang dipinjam dalam satu query (Eager Loading)
-        $peminjaman = Peminjaman::with(['user', 'details.barang'])->findOrFail($id);
-
-        return view('peminjaman.show', compact('peminjaman'));
     }
 
     public function destroy($id)

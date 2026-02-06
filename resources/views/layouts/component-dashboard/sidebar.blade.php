@@ -68,14 +68,14 @@
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Pages</span>
         </li>
-        @if (Auth::user()->id_admin == 1)
+       
         <li class="menu-item {{ request()->routeIs('dashboard.users.*') ? 'active' : '' }}">
             <a href="{{ route('dashboard.users.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user"></i>
                 <div data-i18n="Analytics">Users Management</div>
             </a>
         </li>
-        @endif
+        
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>

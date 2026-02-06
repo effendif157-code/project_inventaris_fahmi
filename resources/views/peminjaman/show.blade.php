@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="card mb-4">
-                <div class="card-header d-flex justify-content-between align-items-center">
+                <div class="card-header d-flex justify-content-between align-items-center border-bottom">
                     <h5 class="mb-0">Informasi Kode: <strong class="text-primary">{{ $peminjaman->kode_peminjaman }}</strong></h5>
                     @php
                         $statusColor = [
@@ -22,7 +22,7 @@
                         {{ strtoupper($peminjaman->status) }}
                     </span>
                 </div>
-                <div class="card-body">
+                <div class="card-body mt-3">
                     <div class="row mb-3">
                         <div class="col-sm-4 fw-bold">Nama Peminjam</div>
                         <div class="col-sm-8">: {{ $peminjaman->nama_peminjam }} ({{ ucfirst($peminjaman->jenis_peminjam) }})</div>
@@ -41,7 +41,7 @@
                     <h6 class="fw-bold mb-3"><i class="bx bx-package me-2"></i>Daftar Barang yang Dipinjam</h6>
                     <div class="table-responsive">
                         <table class="table table-bordered">
-                            <thead class="bg-light">
+                            <thead class="table-light">
                                 <tr>
                                     <th>Barang</th>
                                     <th class="text-center">Jumlah</th>
@@ -67,12 +67,16 @@
                             </tbody>
                         </table>
                     </div>
+                    
+                    <div class="mt-4">
+                        <a href="{{ route('peminjaman.index') }}" class="btn btn-outline-secondary">
+                            <i class="bx bx-arrow-back me-1"></i> Kembali
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card">
+        </div> <div class="col-md-4">
+            <div class="card mb-4">
                 <div class="card-header border-bottom">
                     <h5 class="mb-0">Informasi Petugas</h5>
                 </div>
@@ -86,10 +90,15 @@
                             <span class="fw-bold">{{ $peminjaman->user->name ?? 'Sistem' }}</span>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center mb-4">
+                    <div class="d-flex align-items-center">
                         <div class="avatar flex-shrink-0 me-3">
                             <span class="avatar-initial rounded bg-label-secondary"><i class="bx bx-calendar"></i></span>
                         </div>
                         <div>
                             <small class="text-muted d-block">Waktu Input</small>
                             <span>{{ $peminjaman->created_at->format('d/m/Y H:i') }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> </div> </div> @endsection

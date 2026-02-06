@@ -118,6 +118,12 @@ class PeminjamanController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        $peminjaman = Peminjaman::with(['user', 'details.barang'])->findOrFail($id);
+        return view('peminjaman.show', compact('peminjaman'));
+    }
+
     public function destroy($id)
     {
         $peminjaman = Peminjaman::findOrFail($id);

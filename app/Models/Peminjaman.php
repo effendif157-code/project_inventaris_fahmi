@@ -29,7 +29,7 @@ class Peminjaman extends Model
     }
 
     /**
-     * Relasi ke User (Staff yang menginput)
+     * Relasi ke User (Staff yang menginput)    
      */
     public function user(): BelongsTo
     {

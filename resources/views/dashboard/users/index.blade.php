@@ -158,9 +158,11 @@
                                         </a>
                                         @if(!($loop->first && $user->role === 'admin'))
                                         <div class="dropdown-divider"></div>
-                                        <button type="submit" class="dropdown-item text-danger">
-                                            <i class="bx bx-trash me-2"></i> Hapus User
-                                        </button>
+                                            <form action="{{ route('dashboard.users.destroy', $user->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="dropdown-item bx bx-trash text-danger">Hapus User</button>
+                                            </form>
                                         @endif
                                     </div>
                                 </div>

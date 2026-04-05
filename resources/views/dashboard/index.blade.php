@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                             <span class="fw-semibold d-block mb-1 text-muted">Total Barang</span>
-                            <h3 class="card-title mb-2">{{ $totalBarang ?? 0 }}</h3>
+                            <h3 class="card-title mb-2">{{ $totalBarang }}</h3>
                             <small class="text-success fw-bold">Item Terdata</small>
                         </div>
                     </div>
@@ -133,10 +133,9 @@
                                     <td>
                                         @if($pinjam->status == 'dipinjam')
                                             <span class="badge bg-label-warning">Sedang Dipinjam</span>
-                                        @elseif($pinjam->status == 'kembali')
+                                        @else($pinjam->status == 'kembali')
                                             <span class="badge bg-label-success">Selesai</span>
-                                        @else
-                                            <span class="badge bg-label-secondary">Pending</span>
+                                       
                                         @endif
                                     </td>
                                     <td class="text-center">

@@ -3,6 +3,8 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Barang;
+use App\Models\Peminjaman;
 
 class DashboardController extends Controller
 {
@@ -11,7 +13,26 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        $totalBarang = Barang::count();
+        
+        // GANTI 'stok' dengan nama kolom yang ada di database Anda (misal: 'jumlah')
+        $stokKosong = Barang::where('jumlah', 0)->count(); 
+        
+        $stokMenipisCount = Barang::where('jumlah', '>', 0)
+                                ->where('jumlah', '<=', 5)
+                                ->count();
+        
+        $peminjamanTerbaru = Peminjaman::with(['user', 'barang'])
+            ->latest()
+            ->take(5)
+            ->get();
+
+        return view('dashboard.index', compact(
+            'totalBarang', 
+            'stokKosong', 
+            'stokMenipisCount', 
+            'peminjamanTerbaru'
+        ));
     }
 
     /**

@@ -38,7 +38,7 @@ class Peminjaman extends Model
 
     public function barang() // <--- Pastikan nama fungsinya 'barang'
     {
-        return $this->belongsTo(Barang::class);
+        return $this->belongsTo(Barang::class, 'barang_id');
     }
 
     

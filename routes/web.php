@@ -35,6 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('lokasi', LokasiController::class);
     Route::resource('peminjaman', PeminjamanController::class);
 
+    // Option A: Manual naming
+    Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
 
+  
 });
 
